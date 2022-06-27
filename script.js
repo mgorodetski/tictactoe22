@@ -102,8 +102,8 @@ const checkEnd = () => {
     }
   };
   if (winnerSymbol) { // если есть символ победителя
-    openChoiceModal(`Вы ${winnerSymbol === computerSymbol ? 'проиграли' : 'выиграли'}! Хотите попробовать ещё?`); // открываем модалку новой игры с текстом
-  } else if (!cellsArray.includes(undefined)) openChoiceModal('Ничья. Хочешь попробовать ещё?'); // если никто не выиграл, но все поле заполнено, то показываем модалку ничьи
+    openChoiceModal(`You ${winnerSymbol === computerSymbol ? 'win' : 'lose'}! Wanna try again?`); // открываем модалку новой игры с текстом
+  } else if (!cellsArray.includes(undefined)) openChoiceModal('Draw. Wanna Try again?'); // если никто не выиграл, но все поле заполнено, то показываем модалку ничьи
   return winnerSymbol;
 }
 
