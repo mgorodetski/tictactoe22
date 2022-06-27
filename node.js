@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const PORT = 8000;
 
-// app.use(cors());
+// app.use(cors()); no cors
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://imasdk.googleapis.com');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
