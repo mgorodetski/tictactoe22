@@ -2,9 +2,9 @@
   "name": "tictactoe",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "node.js",
   "scripts": {
-    "start": "node script.js"
+    "start": "node node.js"
   },
   "author": "",
   "license": "ISC",
