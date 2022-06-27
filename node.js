@@ -14,20 +14,20 @@ app.use((req, res, next) => {
 })
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/index.html'));
+  res.sendFile(path.join(__dirname+'/index.html'));
 });
 
 app.get('/style.css', function(req, res) {
-  res.sendFile(path.join(__dirname, '/style.css'));
+  res.sendFile(path.join(__dirname+'/style.css'));
 });
 
 app.get('/script.js', function(req, res) {
-  res.sendFile(path.join(__dirname, '/script.js'));
+  res.sendFile(path.join(__dirname+'/script.js'));
 });
 
 app.get('/ads', function(req, res) {
   res.contentType('application/xml');
-  res.sendFile(path.join(__dirname, '/ad.xml'));
+  res.sendFile(path.join(__dirname+'/ad.xml'));
 });
 
 app.listen(PORT, () => {
