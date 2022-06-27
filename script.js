@@ -17,11 +17,8 @@ const winningCombinations = [
   [2, 5, 8]
 ];
 
-// определяем кто ходит первым
-const firstTurn = players[Math.floor(Math.random() * players.length)];
-// получаем символы, которыми ходят компьютер и пользователь
-const computerSymbol = symbols[firstTurn === COMPUTER ? 0 : 1];
-const userSymbol = symbols[firstTurn === USER ? 0 : 1];
+let computerSymbol
+let userSymbol;
 
 // достаем поле и клетки
 const fieldEl = document.querySelector('#field');
@@ -124,6 +121,9 @@ const computerStep = () => {
 
 // начало игры
 const startGame = () => {
+  const firstTurn = players[Math.floor(Math.random() * players.length)];
+  computerSymbol = symbols[firstTurn === COMPUTER ? 0 : 1]; // получаем символы, которыми ходят компьютер и пользователь
+  userSymbol = symbols[firstTurn === USER ? 0 : 1];
   fieldEl.classList.remove('disabled'); // делаем поле "активным" (убираем прозрачность)
   resetField(); // сбрасываем поле
   if (firstTurn === COMPUTER) computerStep(); // если первый ход компьютера, то он ходит
@@ -225,7 +225,7 @@ const onAdsManagerLoaded = (adsManagerLoadedEvent) => {
   adsManager = adsManagerLoadedEvent.getAdsManager(adVideoEl);
   adsManager.addEventListener(google.ima.AdErrorEvent.Type.AD_ERROR, onAdError);
   adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_PAUSE_REQUESTED, adVideoEl.pause);
-  adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED, videoElement.play);
+  adsManager.addEventListener(google.ima.AdEvent.Type.CONTENT_RESUME_REQUESTED, adVideoEl.play);
   adsManager.addEventListener(google.ima.AdEvent.Type.LOADED, onAdLoaded);
 };
 
@@ -244,14 +244,11 @@ const initializeIMA = () => {
     closeAd();
   });
   let adsRequest = new google.ima.AdsRequest();
-  adsRequest.adTagUrl = 'https://pubads.g.doubleclick.net/gampad/ads?' +
-      'iu=/21775744923/external/single_ad_samples&sz=640x480&' +
-      'cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&' +
-      'gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=';
-  adsRequest.linearAdSlotWidth = adVideoEl.clientWidth;
-  adsRequest.linearAdSlotHeight = adVideoEl.clientHeight;
-  adsRequest.nonLinearAdSlotWidth = adVideoEl.clientWidth;
-  adsRequest.nonLinearAdSlotHeight = adVideoEl.clientHeight / 3;
+  adsRequest.adTagUrl = 'http://localhost:8000/ads';
+  adsRequest.linearAdSlotWidth = 640;
+  adsRequest.linearAdSlotHeight = 360;
+  adsRequest.nonLinearAdSlotWidth = 640;
+  adsRequest.nonLinearAdSlotHeight = 120;
   adsLoader.requestAds(adsRequest);
 };
 
